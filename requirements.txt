@@ -1,0 +1,3 @@
+# Runtime: Python >=3.10 (biblioteca padrão apenas).
+# Dependência de desenvolvimento para a suíte em tests/:
+pytest==9.1.1

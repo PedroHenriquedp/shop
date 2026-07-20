@@ -1,0 +1,13 @@
+services:
+  visualizador-benchmark:
+    build: .
+    container_name: visualizador-benchmark
+    ports:
+      - "8000:8000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8000
+    volumes:
+      - ./data:/app/data:ro
+      - ./results:/app/results:ro
+    restart: unless-stopped

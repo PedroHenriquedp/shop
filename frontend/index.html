@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resultados do Benchmark de Estoque</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Tabela Hash vs Árvore AVL</p>
+        <h1>Resultados experimentais do estoque</h1>
+        <p class="subtitle">Dados oficiais e uma execução pontual para explorar as estruturas.</p>
+      </div>
+      <div class="method-chip" id="methodology">Carregando experimento...</div>
+    </header>
+    <main>
+      <nav class="view-tabs" aria-label="Modo de visualização">
+        <button class="tab active" type="button" data-view="officialView">Resultados oficiais</button>
+        <button class="tab" type="button" data-view="liveView">Teste ao vivo</button>
+      </nav>
+      <section id="officialView">
+        <section class="filters" aria-label="Filtros dos resultados"><label>Base de produtos<select id="baseSelect"></select></label><label>Cenário<select id="scenarioSelect"></select></label></section>
+        <section class="summary-grid" aria-label="Resumo do cenário selecionado"><article class="metric"><span>Vencedor no tempo</span><strong id="winner">-</strong></article><article class="metric"><span>Tempo médio Hash</span><strong id="hashTime">-</strong></article><article class="metric"><span>Tempo médio AVL</span><strong id="avlTime">-</strong></article><article class="metric"><span>Razão AVL / Hash</span><strong id="speedup">-</strong></article></section>
+        <section class="panel comparison-panel"><div class="section-title"><div><h2>Comparação de tempo</h2><p id="comparisonDescription"></p></div></div><div id="timeBars" class="time-bars"></div></section>
+        <section class="panel chart-panel"><div class="section-title"><div><h2>Evolução por tamanho de base</h2><p>Tempo médio do cenário selecionado.</p></div></div><svg id="performanceChart" viewBox="0 0 760 260" role="img" aria-label="Gráfico de evolução de tempo da Hash e AVL"></svg></section>
+        <section class="comparison"><article class="panel"><h2>Tabela Hash</h2><div id="hashMetrics" class="stats"></div></article><article class="panel"><h2>Árvore AVL</h2><div id="avlMetrics" class="stats"></div></article></section>
+        <section class="panel wide"><div class="section-title"><div><h2>Todos os cenários da base</h2><p>Tempo total médio e desvio padrão das 30 repetições.</p></div></div><div class="table-wrap"><table><thead><tr><th>Cenário</th><th>Hash</th><th>AVL</th><th>Vencedor</th></tr></thead><tbody id="resultsTable"></tbody></table></div></section>
+      </section>
+      <section id="liveView" class="hidden">
+        <section class="panel live-control"><div><h2>Executar uma rodada</h2><p>Executa uma vez os sete cenários da metodologia. O resultado substitui o teste anterior e não entra nas médias do artigo.</p></div><form id="liveForm"><label>Quantidade de produtos<input id="liveQuantityInput" type="number" min="1" max="100000" step="1" value="1000" /></label><button id="liveButton" type="submit">Executar teste</button></form></section>
+        <section id="liveProcessing" class="processing hidden" aria-live="polite"><div class="loader" aria-hidden="true"></div><div><strong>Executando cenários</strong><p>Hash e AVL estão sendo avaliadas agora. Isso pode levar alguns segundos para a maior base.</p></div></section>
+        <p id="liveStatus" class="status">Escolha uma base e execute uma rodada.</p>
+        <section id="liveResult" class="hidden"><section class="summary-grid"><article class="metric"><span>Base testada</span><strong id="liveBase">-</strong></article><article class="metric"><span>Origem da base</span><strong id="liveOrigin">-</strong></article><article class="metric"><span>Repetições</span><strong>1</strong></article><article class="metric"><span>Resultado</span><strong>Ao vivo</strong></article></section><section class="panel chart-panel"><div class="section-title"><div><h2>Gráfico desta rodada</h2><p>Tempo total observado em cada cenário.</p></div></div><svg id="livePerformanceChart" viewBox="0 0 760 300" role="img" aria-label="Gráfico de tempo da rodada ao vivo"></svg></section><section class="panel wide"><div class="section-title"><div><h2>Resultado desta rodada</h2><p>Tempo total da execução atual, sem média nem desvio padrão.</p></div></div><div class="table-wrap"><table><thead><tr><th>Cenário</th><th>Hash</th><th>AVL</th><th>Vencedor</th></tr></thead><tbody id="liveTable"></tbody></table></div></section></section>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
