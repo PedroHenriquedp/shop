@@ -135,7 +135,7 @@ class AppHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self) -> None:
         if self.path.startswith("/frontend/"):
-            self.send_.header("Cache-Control", "no-store, max-age=0")
+            self.send_header("Cache-Control", "no-store, max-age=0")
         super().end_headers()
 
     def responder_resultados(self) -> None:
